@@ -1,12 +1,15 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+
 function Page() {
   const router = useRouter();
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const emailRef = useRef<any>(null);
+  const passwordRef = useRef<any>(null);
 
-  async function handleSubmit(e) {
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: any) {
     e.preventDefault();
 
     const email = emailRef.current.value;
@@ -24,14 +27,17 @@ function Page() {
 
       const data = await res.json();
 
-      if (res.ok) {
-        router.push("/sentiment");
-      }
+      if (!res.ok) {
+  setError(data.detail);
+  return;
+}
+
+      router.push("/sentiment");
     } catch (err) {
       console.error(err);
+      setError("An unexpected error occurred");
     }
   }
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -42,6 +48,10 @@ function Page() {
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-2">
           Login
         </h2>
+
+        {error && (
+          <p className="text-red-600 text-center font-medium">{error}</p>
+        )}
 
         <div className="flex flex-col">
           <label htmlFor="email" className="text-gray-700 font-medium mb-1">
@@ -73,9 +83,7 @@ function Page() {
         >
           Login
         </button>
-        
       </form>
-    
     </div>
   );
 }
