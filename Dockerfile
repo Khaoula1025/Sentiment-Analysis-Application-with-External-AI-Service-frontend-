@@ -2,10 +2,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Accept build argument
+
 ARG BACKEND_URL=http://backend:8000
 
-# Set as environment variable
 ENV BACKEND_URL=$BACKEND_URL
 
 COPY package*.json ./
@@ -20,7 +19,6 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Set environment variable in runner stage too
 ENV BACKEND_URL=http://backend:8000
 
 COPY --from=builder /app/.next ./.next
