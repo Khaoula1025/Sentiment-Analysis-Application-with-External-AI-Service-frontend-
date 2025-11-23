@@ -63,38 +63,33 @@ This is the frontend interface for the Sentiment Analysis micro-service. It prov
 ---
 
 ## Project Structure
-
 ```
-sentiment-analysis-application-with-external-ai-service-frontend-/
-├── pages/
-│   ├── _app.js              # App wrapper, global styles
-│   ├── index.js             # Landing/redirect page
-│   ├── login.js             # Login page
-│   └── sentiment.js         # Sentiment analysis page
-├── components/
-│   ├── LoginForm.js         # Login form component
-│   ├── SentimentForm.js     # Text input form
-│   ├── SentimentResult.js   # Results display
-│   ├── Layout.js            # Page layout wrapper
-│   └── Navbar.js            # Navigation bar
-├── services/
-│   └── api.js               # API client functions
-├── utils/
-│   ├── auth.js              # JWT storage & retrieval
-│   └── constants.js         # App constants
-├── styles/
-│   ├── globals.css          # Global styles
-│   └── Home.module.css      # Component styles
-├── public/
-│   └── favicon.ico
-├── .env.local.example       # Example environment variables
+sentiment-analysis-frontend/
+├── .next/                       # Next.js build output
+├── app/
+│   ├── login/                   # Login page route
+│   ├── sentiment/               # Sentiment analysis page route
+│   ├── favicon.ico
+│   ├── globals.css              # Global styles
+│   ├── layout.tsx               # Root layout component
+│   └── page.tsx                 # Home page
+├── node_modules/                # Dependencies
+├── public/                      # Static assets
+├── .dockerignore
 ├── .gitignore
+├── docker-compose.yml           # Docker Compose configuration
 ├── Dockerfile
-├── package.json
-├── next.config.js
-└── README.md
+├── eslint.config.mjs            # ESLint configuration
+├── next.config.ts               # Next.js configuration
+├── next-env.d.ts                # Next.js TypeScript declarations
+├── package.json                 # NPM dependencies
+├── package-lock.json
+├── postcss.config.mjs           # PostCSS configuration
+├── README.md
+└── tsconfig.json                # TypeScript configuration
 ```
 
+**Note:** This project uses Next.js 13+ App Router structure with TypeScript.
 ---
 
 ## Installation
